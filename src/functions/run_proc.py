@@ -246,7 +246,7 @@ def map_cortex(
             output_dir,
             f"{prefix}_label-{label}_feature-{output_feat}_smooth-{fwhm}mm.func.gii",
         )
-
+        dists = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
         if "_blur" in feat_lower:
             inter_file = os.path.join(
                 output_dir,
@@ -665,34 +665,34 @@ def run(
                 f"{BIDS_ID}_hemi-{hemi}_surf-fsnative_label-sphere.surf.gii",
             ),
         )
-
-        for surf in ["white", "pial", "midthickness"]:
-            shutil.copyfile(
-                os.path.join(
-                    subject_micapipe_dir,
-                    "surf",
-                    f"{BIDS_ID}_hemi-{hemi}_space-nativepro_surf-fsnative_label-{surf}.surf.gii",
-                ),
-                os.path.join(
-                    subject_output_dir,
-                    "structural",
-                    f"{BIDS_ID}_hemi-{hemi}_space-nativepro_surf-fsnative_label-{surf}.surf.gii",
-                ),
-            )
-
-        for surf in ["inner", "outer", "midthickness"]:
-            shutil.copyfile(
-                os.path.join(
-                    subject_hippunfold_dir,
-                    "surf",
-                    f"{BIDS_ID}_hemi-{hemi}_space-T1w_den-0p5mm_label-hipp_{surf}.surf.gii",
-                ),
-                os.path.join(
-                    subject_output_dir,
-                    "structural",
-                    f"{BIDS_ID}_hemi-{hemi}_space-T1w_den-0p5mm_label-hipp_{surf}.surf.gii",
-                ),
-            )
+        if structure == "cortex" or structure == "subcortex":
+            for surf in ["white", "pial", "midthickness"]:
+                shutil.copyfile(
+                    os.path.join(
+                        subject_micapipe_dir,
+                        "surf",
+                        f"{BIDS_ID}_hemi-{hemi}_space-nativepro_surf-fsnative_label-{surf}.surf.gii",
+                    ),
+                    os.path.join(
+                        subject_output_dir,
+                        "structural",
+                        f"{BIDS_ID}_hemi-{hemi}_space-nativepro_surf-fsnative_label-{surf}.surf.gii",
+                    ),
+                )
+        if structure == "hippocampus":
+            for surf in ["inner", "outer", "midthickness"]:
+                shutil.copyfile(
+                    os.path.join(
+                        subject_hippunfold_dir,
+                        "surf",
+                        f"{BIDS_ID}_hemi-{hemi}_space-T1w_den-0p5mm_label-hipp_{surf}.surf.gii",
+                    ),
+                    os.path.join(
+                        subject_output_dir,
+                        "structural",
+                        f"{BIDS_ID}_hemi-{hemi}_space-T1w_den-0p5mm_label-hipp_{surf}.surf.gii",
+                    ),
+                )
 
     # Wrap up
     elapsed = round((time.time() - start_time) / 60, 2)

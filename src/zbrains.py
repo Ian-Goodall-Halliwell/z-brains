@@ -489,8 +489,9 @@ def main_func(args):
                     str(args.dataset),
                     "--dicoms",
                     str(args.dicoms),
+                    "--volumetric",
+                    str(args.volumetric),
                 ]
-                print(args.dicoms)
                 if args.demo:
                     args_list.extend(["--demo", args.demo])
 
@@ -709,9 +710,9 @@ if __name__ == "__main__":
     parser.add_argument("--verbose", type=int, default=-1)
     parser.add_argument("--version", action="version", version="1.0.0")
     parser.add_argument("--dicoms", type=int, default=1)
+    parser.add_argument("--volumetric", type=int, default=1)
     # Parse the arguments
     args, unknown_args = parser.parse_known_args()
-    print(args.dicoms)
     if not vars(args):
         parser.print_help()
         sys.exit(1)

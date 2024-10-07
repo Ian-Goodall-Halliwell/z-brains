@@ -4,6 +4,7 @@ from scipy.stats import mode
 import subprocess
 import os
 from .utilities import show_warning
+from .sWM import laplace_solver, surface_generator
 
 
 def load_gifti_data(filepath):
@@ -40,6 +41,20 @@ def compute_blurring(
     tmp_dir,
 ):
 
+    base_path = input_dir
+    for _ in range(4):  # Adjust the range to navigate up the desired number of levels
+        base_path, _ = os.path.split(base_path)
+    freesurfer_path = os.path.join(
+        base_path, "freesurfer", bids_id, "mri", "aparc+aseg.nii.gz"
+    )
+    output_path = os.path.join(tmp_dir, f"laplace{hemi}{feat}{resol}{fwhm}.nii.gz")
+    laplace_solver.solve_laplace(freesurfer_path, output_path)
+    surface_generator.shift_surface(
+        f"{surf_dir}/{bids_id}_hemi-{hemi}_space-nativepro_surf-fsnative_label-white.surf.gii",
+        output_path,
+        f"{tmp_dir}//{hemi}{feat}{resol}{fwhm}sfwm-",
+        [1, 2, 3, 4, 5],
+    )
     wmBoundaryDataArr = load_gifti_data(
         f"{input_dir}/{bids_id}_hemi-{hemi}_surf-fsnative_label-white_{feat}.func.gii"
     )
