@@ -11,7 +11,11 @@ set "demo_patients=E:\PX_participants.csv"
 set "sids=all"
 set "sess=all"
 call conda activate zbrains
+<<<<<<< Updated upstream
 call python -m src.zbrains --run "proc" ^
+=======
+call python -m src.zbrains --run "proc analysis" ^
+>>>>>>> Stashed changes
                    --sub "%sids%" ^
                    --micapipe %micapipe_dir% ^
                    --hippunfold %hippunfold_dir% ^
@@ -24,10 +28,14 @@ call python -m src.zbrains --run "proc" ^
                    --smooth_hip 2 ^
                    --n_jobs 4 ^
                    --n_jobs_wb 4 ^
+<<<<<<< Updated upstream
                    --dicoms 0 ^
                    --volumetric 0 ^
                    --struct cortex ^
                    --feat qT1_blur flair_blur ^
+=======
+                   --dicoms 1 ^
+>>>>>>> Stashed changes
 		           --label_ctx "white" ^
                    --wb_path "C:/Users/Ian/Downloads/workbench-windows64-v1.5.0/workbench/bin_windows64" ^
                    --column_map participant_id=ID session_id=SES ^
