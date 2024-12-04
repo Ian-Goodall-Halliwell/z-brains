@@ -196,6 +196,7 @@ def map_cortex(
     if feat.startswith("plugin_"):
         root_dir = subject_plugin_dir
         feat = feat[7:]
+    #TODO change directories for PET
     # Input & output locations
     surf_dir = os.path.join(root_dir, "surf")
     input_dir = os.path.join(root_dir, "maps")
@@ -203,6 +204,7 @@ def map_cortex(
     os.makedirs(output_dir, exist_ok=True)
 
     # Mappings from features names to the way they appear in the input and output filenames
+    # TODO: add PET
     map_feat = {
         "thickness": "thickness",
         "flair": "flair",
@@ -577,7 +579,7 @@ def run(
     # Copy base T1w to output folder
     if not os.path.exists(os.path.join(subject_output_dir, "structural")):
         os.makedirs(os.path.join(subject_output_dir, "structural"))
-
+    ### TODO: Files might not exis for PET
     shutil.copyfile(
         os.path.join(
             subject_micapipe_dir,
@@ -641,7 +643,7 @@ def run(
                     f"{BIDS_ID}_hemi-{hemi}_space-nativepro_surf-fsnative_label-{surf}.surf.gii",
                 ),
             )
-
+        # TODO: might not exist for PET
         for surf in ["inner", "outer", "midthickness"]:
             shutil.copyfile(
                 os.path.join(

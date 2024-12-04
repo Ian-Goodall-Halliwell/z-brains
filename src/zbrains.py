@@ -218,6 +218,7 @@ def check_files_and_directories(args, tasks, structures, sid, ses):
     SUBJECT_SURF_DIR = None
 
     if "proc" in tasks:
+        ### TODO: Add check for PET data directories
         if "cortex" in structures or "subcortex" in structures:
             SUBJECT_MICAPIPE_DIR = (
                 os.path.join(dataset_path, args.micapipe, sid, ses)
