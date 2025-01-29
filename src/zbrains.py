@@ -63,7 +63,7 @@ def parse_args(args):
     # Define the ZBRAINS and script_dir variables
     ZBRAINS = Path(os.path.realpath(__file__)).parent
     script_dir = ZBRAINS / "functions"
-
+    args.struct = args.struct[0].split(" ") if args.struct else None
     if isinstance(args.column_map, list):
         args.column_map = (
             dict([arg.split("=") for arg in args.column_map])
@@ -241,7 +241,7 @@ def check_files_and_directories(args, tasks, structures, sid, ses):
             )
 
         SUBJECT_PLUGIN_DIR = (
-            os.path.join(dataset_path, args.plugin, sid, ses or "")
+            os.path.join(dataset_path, args.micapipe, sid, ses or "")
             if args.plugin
             else None
         )

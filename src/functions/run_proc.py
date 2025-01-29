@@ -578,42 +578,42 @@ def run(
     if not os.path.exists(os.path.join(subject_output_dir, "structural")):
         os.makedirs(os.path.join(subject_output_dir, "structural"))
 
-    shutil.copyfile(
-        os.path.join(
-            subject_micapipe_dir,
-            "anat",
-            f"{BIDS_ID}_space-nativepro_T1w_brain.nii.gz",
-        ),
-        os.path.join(
-            subject_output_dir,
-            "structural",
-            f"{BIDS_ID}_space-nativepro_T1w_brain.nii.gz",
-        ),
-    )
-    shutil.copyfile(
-        os.path.join(
-            subject_micapipe_dir,
-            "anat",
-            f"{BIDS_ID}_space-nativepro_T1w.nii.gz",
-        ),
-        os.path.join(
-            subject_output_dir,
-            "structural",
-            f"{BIDS_ID}_space-nativepro_T1w.nii.gz",
-        ),
-    )
-    shutil.copyfile(
-        os.path.join(
-            subject_micapipe_dir,
-            "parc",
-            f"{BIDS_ID}_space-nativepro_T1w_atlas-subcortical.nii.gz",
-        ),
-        os.path.join(
-            subject_output_dir,
-            "structural",
-            f"{BIDS_ID}_space-nativepro_T1w_atlas-subcortical.nii.gz",
-        ),
-    )
+    # shutil.copyfile(
+    #     os.path.join(
+    #         subject_micapipe_dir,
+    #         "anat",
+    #         f"{BIDS_ID}_space-nativepro_T1w_brain.nii.gz",
+    #     ),
+    #     os.path.join(
+    #         subject_output_dir,
+    #         "structural",
+    #         f"{BIDS_ID}_space-nativepro_T1w_brain.nii.gz",
+    #     ),
+    # )
+    # shutil.copyfile(
+    #     os.path.join(
+    #         subject_micapipe_dir,
+    #         "anat",
+    #         f"{BIDS_ID}_space-nativepro_T1w.nii.gz",
+    #     ),
+    #     os.path.join(
+    #         subject_output_dir,
+    #         "structural",
+    #         f"{BIDS_ID}_space-nativepro_T1w.nii.gz",
+    #     ),
+    # )
+    # shutil.copyfile(
+    #     os.path.join(
+    #         subject_micapipe_dir,
+    #         "parc",
+    #         f"{BIDS_ID}_space-nativepro_T1w_atlas-subcortical.nii.gz",
+    #     ),
+    #     os.path.join(
+    #         subject_output_dir,
+    #         "structural",
+    #         f"{BIDS_ID}_space-nativepro_T1w_atlas-subcortical.nii.gz",
+    #     ),
+    # )
     for hemi in ["L", "R"]:
         shutil.copyfile(
             os.path.join(
@@ -642,43 +642,43 @@ def run(
                 ),
             )
 
-        for surf in ["inner", "outer", "midthickness"]:
-            shutil.copyfile(
-                os.path.join(
-                    subject_hippunfold_dir,
-                    "surf",
-                    f"{BIDS_ID}_hemi-{hemi}_space-T1w_den-0p5mm_label-hipp_{surf}.surf.gii",
-                ),
-                os.path.join(
-                    subject_output_dir,
-                    "structural",
-                    f"{BIDS_ID}_hemi-{hemi}_space-T1w_den-0p5mm_label-hipp_{surf}.surf.gii",
-                ),
-            )
-        shutil.copyfile(
-            os.path.join(
-                subject_micapipe_dir,
-                "xfm",
-                f"{BIDS_ID}_from-nativepro_brain_to-MNI152_0.8mm_mode-image_desc-SyN_0GenericAffine.mat",
-            ),
-            os.path.join(
-                subject_output_dir,
-                "structural",
-                f"{BIDS_ID}_from-nativepro_brain_to-MNI152_0.8mm_mode-image_desc-SyN_0GenericAffine.mat",
-            ),
-        )
-        shutil.copyfile(
-            os.path.join(
-                subject_micapipe_dir,
-                "xfm",
-                f"{BIDS_ID}_from-nativepro_brain_to-MNI152_0.8mm_mode-image_desc-SyN_1Warp.nii.gz",
-            ),
-            os.path.join(
-                subject_output_dir,
-                "structural",
-                f"{BIDS_ID}_from-nativepro_brain_to-MNI152_0.8mm_mode-image_desc-SyN_1Warp.nii.gz",
-            ),
-        )
+        # for surf in ["inner", "outer", "midthickness"]:
+        #     shutil.copyfile(
+        #         os.path.join(
+        #             subject_hippunfold_dir,
+        #             "surf",
+        #             f"{BIDS_ID}_hemi-{hemi}_space-T1w_den-0p5mm_label-hipp_{surf}.surf.gii",
+        #         ),
+        #         os.path.join(
+        #             subject_output_dir,
+        #             "structural",
+        #             f"{BIDS_ID}_hemi-{hemi}_space-T1w_den-0p5mm_label-hipp_{surf}.surf.gii",
+        #         ),
+        #     )
+        # shutil.copyfile(
+        #     os.path.join(
+        #         subject_micapipe_dir,
+        #         "xfm",
+        #         f"{BIDS_ID}_from-nativepro_brain_to-MNI152_0.8mm_mode-image_desc-SyN_0GenericAffine.mat",
+        #     ),
+        #     os.path.join(
+        #         subject_output_dir,
+        #         "structural",
+        #         f"{BIDS_ID}_from-nativepro_brain_to-MNI152_0.8mm_mode-image_desc-SyN_0GenericAffine.mat",
+        #     ),
+        # )
+        # shutil.copyfile(
+        #     os.path.join(
+        #         subject_micapipe_dir,
+        #         "xfm",
+        #         f"{BIDS_ID}_from-nativepro_brain_to-MNI152_0.8mm_mode-image_desc-SyN_1Warp.nii.gz",
+        #     ),
+        #     os.path.join(
+        #         subject_output_dir,
+        #         "structural",
+        #         f"{BIDS_ID}_from-nativepro_brain_to-MNI152_0.8mm_mode-image_desc-SyN_1Warp.nii.gz",
+        #     ),
+        # )
 
     # do the mapping
     for feat in features:
